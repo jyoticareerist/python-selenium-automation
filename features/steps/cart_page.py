@@ -1,12 +1,13 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
 
 
 @then('Verify Cart page is opened')
 def verify_cart_page_opened(context):
-    page_url = context.driver.current_url
-    assert "/cart" in page_url, "Cart page not opened"
+    # page_url = context.driver.current_url
+    # assert "/cart" in page_url, "Cart page not opened"
+    context.driver.wait.until(EC.url_contains("/cart"), message="Cart page not opened")
     print("Cart page is successfully opened.")
 
 

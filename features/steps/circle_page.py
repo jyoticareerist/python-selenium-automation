@@ -8,7 +8,7 @@ def verify_target_circle_page_opened(context):
     page_url = context.driver.current_url
     assert '/circle' in page_url, "Target Circle URL is not correct"
     print("Target Circle page is opened successfully")
-    sleep(6)
+    # sleep(6)
 
 
 @then('Verify {count} Benefits Boxes are present')

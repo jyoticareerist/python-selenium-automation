@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from time import sleep
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # get the path to the ChromeDriver executable
 driver_path = ChromeDriverManager().install()
@@ -11,6 +12,8 @@ driver_path = ChromeDriverManager().install()
 service = Service(driver_path)
 driver = webdriver.Chrome(service=service)
 driver.maximize_window()
+driver.implicitly_wait(6)
+driver.wait = WebDriverWait(driver, 10)
 
 # open the url
 driver.get('https://www.target.com/')
@@ -22,12 +25,14 @@ driver.find_element(By.CSS_SELECTOR, 'a[href*=cart]').click()
 expected_in_url = "www.target.com/cart"
 current_url = driver.current_url.lower()
 
-assert expected_in_url in current_url, f"1. Error: '{expected_in_url}' is not present in Current URL ({current_url})"
+# assert expected_in_url in current_url, f"1. Error: '{expected_in_url}' is not present in Current URL ({current_url})"
+url_error_message = f"1. Error: '{expected_in_url}' is not present in Current URL ({current_url})"
+driver.wait.until(EC.url_contains(expected_in_url), message=url_error_message)
 
 print(f"1. '{expected_in_url}' is present in the Current URL")
 
 # wait for 4 sec
-sleep(4)
+# sleep(4)
 
 # Assert that the 'Your cart is empty' message is present.
 expected_result = "Your cart is empty"

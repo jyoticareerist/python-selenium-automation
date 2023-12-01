@@ -11,25 +11,28 @@ driver_path = ChromeDriverManager().install()
 service = Service(driver_path)
 driver = webdriver.Chrome(service=service)
 driver.maximize_window()
+driver.implicitly_wait(6)
 
 # open the url
 driver.get('https://www.target.com/')
 
 # wait for 4 sec
-sleep(4)
+# sleep(4)
 
 # Click 'Sign In' icon in Top Navigation.
 driver.find_element(By.CSS_SELECTOR, 'a[aria-label="Account, sign in"]').click()
 
 # wait for 4 sec
-sleep(4)
+# sleep(4)
 
 # Click 'Sign In' in the sidebar.
 button = driver.find_element(By.CSS_SELECTOR, 'a[data-test="accountNav-signIn"]')
-sleep(4)
-driver.execute_script("arguments[0].click();", button)
+button.click()
+# using implicitly_wait helped get rid of the below two overhead executions
+# sleep(4)
+# driver.execute_script("arguments[0].click();", button)
 
-sleep(4)
+# sleep(4)
 # Assert that the 'www.target.com/login' is present in the url.
 expected_in_url = "www.target.com/login"
 current_url = driver.current_url.lower()
@@ -37,7 +40,7 @@ assert expected_in_url in current_url, f"1. Error: '{expected_in_url}' is not pr
 print(f"1. '{expected_in_url}' is present in the Current URL")
 
 # wait for 4 sec
-sleep(4)
+# sleep(4)
 
 # Assert that the 'Sign into your Target account' message appears in the sidebar form.
 expected_message = "Sign into your Target account"

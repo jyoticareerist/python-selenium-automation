@@ -10,7 +10,7 @@ SEARCH_ITEM_SELECTOR = (By.CSS_SELECTOR, ".styles__StyledCardWrapper-sc-z8946b-0
 def search_product(context, product):
     context.driver.find_element(By.ID, 'search').send_keys(product)
     context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/Search/SearchButton"]').click()
-    sleep(6)
+    # sleep(6)
 
 
 @then('Verify Search worked for {search_key}')
@@ -29,6 +29,6 @@ def verify_search_url(context, search_key):
 def click_first_item(context):
     sleep(6)
     context.driver.execute_script("window.scrollBy(0,500)", "")
-    sleep(6)
+    # sleep(6)
     search_result_first = context.driver.find_element(*SEARCH_ITEM_SELECTOR)
     search_result_first.click()

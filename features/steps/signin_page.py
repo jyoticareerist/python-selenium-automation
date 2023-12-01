@@ -1,18 +1,20 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
 
 
 @then('Verify Sign In page is opened')
 def verify_signin_page_opened(context):
     # Assert that the 'www.target.com/login' is present in the url.
     expected_in_url = "www.target.com/login"
-    current_url = context.driver.current_url.lower()
-    assert expected_in_url in current_url, f"1. Error: '{expected_in_url}' is not present in Current URL ({current_url})"
+    # current_url = context.driver.current_url.lower()
+    # assert expected_in_url in current_url,
+    # f"1. Error: '{expected_in_url}' is not present in Current URL ({current_url})"
+    context.driver.wait.until(EC.url_contains(expected_in_url), message="Login page not opened")
     print(f"1. '{expected_in_url}' is present in the Current URL")
 
     # wait for 4 sec
-    sleep(4)
+    # sleep(4)
 
 
 @then('Verify Title is present')
