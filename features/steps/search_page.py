@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
-
+from selenium.webdriver.support import expected_conditions as EC
 
 SEARCH_ITEM_SELECTOR = (By.CSS_SELECTOR, ".styles__StyledCardWrapper-sc-z8946b-0 .styles__StyledLink-sc-vpsldm-0.styles__StyledTitleLink-sc-14ktig2-1")
+SEARCH_ITEM_SELECTOR_2 = (By.CSS_SELECTOR, "styles__StyledCardWrapper-sc-z8946b-0.kBCbIH.h-padding-a-tight")
 
 
 @when('Search for {product}')
@@ -32,3 +33,16 @@ def click_first_item(context):
     # sleep(6)
     search_result_first = context.driver.find_element(*SEARCH_ITEM_SELECTOR)
     search_result_first.click()
+
+
+@then('Verify each search result product has Image and Title')
+def verify_each_item(context):
+    sleep(6)
+    context.driver.execute_script("window.scrollBy(0,500)", "")
+    # sleep(6)
+    search_results = context.driver.find_elements(*SEARCH_ITEM_SELECTOR_2)
+    for product in search_results:
+        product_title = product.find_element(By.CSS_SELECTOR, '[data-test="product-title"]').text
+        assert product_title, "Product Title not found"
+        product_img = product.find_element(By.CSS_SELECTOR, 'img')
+        assert product_img, "Product Image not found"
