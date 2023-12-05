@@ -51,7 +51,9 @@ def verify_product_details_page_opened(context):
 @then('Click Add to Cart button')
 def click_add_to_cart(context):
     sleep(6)
-    context.driver.execute_script("window.scrollBy(0,500)", "")
+    context.driver.execute_script("window.scrollBy(0,600)", "")
+    sleep(6)
+    context.driver.execute_script("window.scrollBy(0,600)", "")
     # sleep(6)
     add_to_cart_button = context.driver.find_element(*ADD_TO_CART_BUTTON)
     context.product_title = add_to_cart_button.get_attribute("aria-label")

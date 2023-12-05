@@ -13,6 +13,7 @@ def verify_cart_page_opened(context):
 
 @then('Verify Cart is empty')
 def verify_cart_is_empty(context):
-    h1_element = context.driver.find_element(By.XPATH, '//h1[contains(text(), "Your cart is empty")]')
-    assert h1_element is not None, "'Your cart is empty' message is not present"
-    print("'Your cart is empty' message is present.")
+    # h1_element = context.driver.find_element(By.XPATH, '//h1[contains(text(), "Your cart is empty")]')
+    # assert h1_element is not None, "'Your cart is empty' message is not present"
+    # print("'Your cart is empty' message is present.")
+    context.app.cart_page.verify_empty_cart()

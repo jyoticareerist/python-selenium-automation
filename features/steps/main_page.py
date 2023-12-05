@@ -8,15 +8,17 @@ SIGN_IN_MENU_BUTTON = (By.CSS_SELECTOR, 'a[data-test="accountNav-signIn"]')
 
 
 @given('Open target.com')
-def open_google(context):
-    context.driver.get('https://www.target.com/')
+def open_target(context):
+    # context.driver.get('https://www.target.com/')
+    context.app.main_page.open_main()
 
 
 @when('Click Cart Icon')
 def click_cart_icon(context):
-    cart_icon = context.driver.find_element(By.CSS_SELECTOR, 'a[href*=cart]')
-    cart_icon.click()
+    # cart_icon = context.driver.find_element(By.CSS_SELECTOR, 'a[href*=cart]')
+    # cart_icon.click()
     # sleep(4)
+    context.app.main_page.click_cart_icon()
 
 
 @when('Click Sign In')

@@ -5,25 +5,29 @@ from selenium.webdriver.support import expected_conditions as EC
 
 SEARCH_ITEM_SELECTOR = (By.CSS_SELECTOR, ".styles__StyledCardWrapper-sc-z8946b-0 .styles__StyledLink-sc-vpsldm-0.styles__StyledTitleLink-sc-14ktig2-1")
 SEARCH_ITEM_SELECTOR_2 = (By.CSS_SELECTOR, "styles__StyledCardWrapper-sc-z8946b-0.kBCbIH.h-padding-a-tight")
+SEARCH_FIELD = (By.ID, 'search')
 
 
 @when('Search for {product}')
 def search_product(context, product):
-    context.driver.find_element(By.ID, 'search').send_keys(product)
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/Search/SearchButton"]').click()
+    # context.driver.find_element(By.ID, 'search').send_keys(product)
+    # context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/Search/SearchButton"]').click()
     # sleep(6)
+    search_field = context.app.main_page.search(product)
 
 
 @then('Verify Search worked for {search_key}')
 def verify_search(context, search_key):
-    search_results_header = context.driver.find_element(By.CSS_SELECTOR, '[data-test="resultsHeading"] span.h-text-bs').text
-    assert search_key in search_results_header, f"Expected text {search_key} not in {search_results_header}"
+    # search_results_header = context.driver.find_element(By.CSS_SELECTOR, '[data-test="resultsHeading"] span.h-text-bs').text
+    # assert search_key in search_results_header, f"Expected text {search_key} not in {search_results_header}"
+    context.app.search_results_page.verify_search_result(search_key)
 
 
 @then('Verify search result url has {search_key}')
 def verify_search_url(context, search_key):
-    assert search_key in context.driver.current_url,\
-        f"Expected text {search_key} not in {context.driver.current_url}"
+    # assert search_key in context.driver.current_url,\
+    #     f"Expected text {search_key} not in {context.driver.current_url}"
+    context.app.search_results_page.verify_search_url(search_key)
 
 
 @then('Click First Item in search results')

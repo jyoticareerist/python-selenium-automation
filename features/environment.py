@@ -3,6 +3,8 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
 
+from app.application import Application
+
 
 def browser_init(context):
     """
@@ -18,6 +20,8 @@ def browser_init(context):
     #  Increased from 4 seconds to 6 seconds to make the tests work and got rid of sleep wherever possible
     context.driver.implicitly_wait(6)
     context.driver.wait = WebDriverWait(context.driver, 10)
+    context.app = Application(context.driver)
+
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
