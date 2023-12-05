@@ -15,5 +15,4 @@ class MainPage(Page):
         self.click(*self.SEARCH_BTN)
 
     def click_cart_icon(self):
-        cart_icon = self.find_element(*self.CART_ICON)
-        cart_icon.click()
+        self.click(*self.CART_ICON)
