@@ -1,5 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from support.logger import logger
 from time import sleep
 
 
@@ -11,14 +12,17 @@ class Page:
 
     def open_url(self, url):
         self.driver.get(url)
+        logger.info(f'Opening url {url}')
 
     def get_current_url(self):
         return self.driver.current_url
 
     def click(self, *locator):
         self.driver.find_element(*locator).click()
+        logger.info(f'Clicking the element: {locator}')
 
     def wait_until_click(self, element_name, *locator):
+        logger.info(f'Wait and click the element: {locator}')
         self.wait.until(
             EC.element_to_be_clickable(locator),
             f'{element_name} not clickable!'
@@ -26,7 +30,7 @@ class Page:
         self.click(*locator)
 
     def wait_until_visible(self, element_name, *locator):
-        print(f'{element_name} wait until visible')
+        logger.info(f'{element_name} wait until visible')
         self.wait.until(
             EC.visibility_of_element_located(locator),
             f"{element_name} not present!"
@@ -56,12 +60,15 @@ class Page:
         self.driver.close()
 
     def find_element(self, *locator):
+        logger.info(f'Searching for element {locator}')
         return self.driver.find_element(*locator)
 
     def find_elements(self, *locator):
+        logger.info(f'Searching for elements {locator}')
         return self.driver.find_elements(*locator)
 
     def input(self, text, *locator):
+        logger.info(f'Input {text} in element {locator}')
         self.driver.find_element(*locator).send_keys(text)
 
     def verify_partial_match(self, expected_text, *locator):
