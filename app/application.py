@@ -4,6 +4,9 @@ from pages.search_results import SearchResultsPage
 from pages.cart_page import CartPage
 from pages.login_page import LoginPage
 from pages.product_details import ProductDetailsPage
+from pages.circle_page import CirclePage
+from pages.partner_page import PartnerPage
+from pages.terms_and_conditions_page import TermsAndConditionsPage
 
 
 class Application:
@@ -15,3 +18,6 @@ class Application:
         self.cart_page = CartPage(driver)
         self.login_page = LoginPage(driver)
         self.product_details_page = ProductDetailsPage(driver)
+        self.partner_page = PartnerPage(driver)
+        self.circle_page = CirclePage(driver)
+        self.terms_and_conditions_page = TermsAndConditionsPage(driver)

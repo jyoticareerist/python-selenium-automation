@@ -11,6 +11,7 @@ class LoginPage(Page):
     SIGNIN_BTN_TEXT = 'Sign-In button'
     EMAIL_FIELD_TEXT = 'Email Field'
     PASSWORD_FIELD_TEXT = 'Password Field'
+    TERMS_AND_CONDITIONS_LINK = (By.CSS_SELECTOR, '.styles__StyledRow-sc-wmoju4-0 a[href*="terms-condition"]')
 
     def verify_login_page(self):
         self.verify_partial_url('login')
@@ -38,3 +39,6 @@ class LoginPage(Page):
         self.verify_element_disappears(self.PASSWORD_FIELD_TEXT, *self.PASSWORD_FIELD)
         self.verify_element_disappears(self.SIGNIN_BTN_TEXT, *self.SIGNIN_BTN)
         self.verify_partial_url('login')
+
+    def click_terms_and_conditions(self):
+        self.click(*self.TERMS_AND_CONDITIONS_LINK)

@@ -23,12 +23,6 @@ Feature: Test Scenarios for target.com
     |carpet         |carpet                 |carpet                     |
     |toys for babies|toys for babies        |toys+for+babies            |
 
-  Scenario: Verify 5 benefits boxes on Target Circle
-    Given Open target.com
-    When Click Target Circle in Topmost navigation
-    Then Verify Target Circle page is opened
-    And Verify 5 Benefits Boxes are present
-
   Scenario: User searches for carpet, adds to cart and verifies successfully added to cart
     Given Open target.com
     When Search for carpet
