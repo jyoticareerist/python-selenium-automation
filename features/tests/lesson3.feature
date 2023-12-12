@@ -11,7 +11,7 @@ Feature: Test Scenarios for target.com
     And Click Sign In under menu
     Then Verify Sign In page is opened
     And Verify Sign In form is opened
-    And Input email and password on SignIn page
+    And Input email (abcd@xyz.com) and password (some-password) on SignIn page
     And Click Sign In
     And Verify user is logged in (sign in form should disappear)
 

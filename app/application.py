@@ -7,6 +7,7 @@ from pages.product_details import ProductDetailsPage
 from pages.circle_page import CirclePage
 from pages.partner_page import PartnerPage
 from pages.terms_and_conditions_page import TermsAndConditionsPage
+from pages.help_page import HelpPage
 
 
 class Application:
@@ -21,3 +22,4 @@ class Application:
         self.partner_page = PartnerPage(driver)
         self.circle_page = CirclePage(driver)
         self.terms_and_conditions_page = TermsAndConditionsPage(driver)
+        self.help_page = HelpPage(driver)

@@ -17,6 +17,18 @@ def switch_window(context):
     context.app.page.switch_to_new_window()
 
 
+@when('Enters incorrect email and password combination')
+def input_incorrect_email_password(context):
+    email = 'jyoti12@gmail.com'
+    password = 'something12'
+    context.app.login_page.input_email_password(email, password)
+
+
+@when('Clicks login button')
+def click_sign_in(context):
+    context.app.login_page.click_sign_in()
+
+
 @then('Verify Terms and Conditions page is opened')
 def verify_terms_and_conditions_page_opened(context):
     context.app.terms_and_conditions_page.verify_terms_and_conditions_page_opened()
@@ -40,7 +52,9 @@ def verify_signin_form_opened(context):
 
 @then('Input email and password on SignIn page')
 def input_email_password(context):
-    context.app.login_page.input_email_password()
+    email = '****@****.***'
+    password = '********'
+    context.app.login_page.input_email_password(email, password)
 
 
 @then('Click Sign In')
@@ -51,3 +65,8 @@ def click_sign_in(context):
 @then('Verify user is logged in (sign in form should disappear)')
 def verify_signin_success(context):
     context.app.login_page.verify_signin_success()
+
+
+@then("Verified that We can't find your account. message is shown")
+def verify_invalid_login(context):
+    context.app.login_page.verify_invalid_login()

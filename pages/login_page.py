@@ -12,6 +12,7 @@ class LoginPage(Page):
     EMAIL_FIELD_TEXT = 'Email Field'
     PASSWORD_FIELD_TEXT = 'Password Field'
     TERMS_AND_CONDITIONS_LINK = (By.CSS_SELECTOR, '.styles__StyledRow-sc-wmoju4-0 a[href*="terms-condition"]')
+    ALERT_DIV = (By.CSS_SELECTOR, '[data-test="authAlertDisplay"] div')
 
     def verify_login_page(self):
         self.verify_partial_url('login')
@@ -26,9 +27,9 @@ class LoginPage(Page):
         self.verify_title_present()
         self.verify_signin_button_present()
 
-    def input_email_password(self):
-        self.input('****@*****.***', *self.EMAIL_FIELD)
-        self.input('*****', *self.PASSWORD_FIELD)
+    def input_email_password(self, username, password):
+        self.input(username, *self.EMAIL_FIELD)
+        self.input(password, *self.PASSWORD_FIELD)
 
     def click_sign_in(self):
         self.wait_until_click(self.SIGNIN_BTN_TEXT, *self.SIGNIN_BTN)
@@ -42,3 +43,6 @@ class LoginPage(Page):
 
     def click_terms_and_conditions(self):
         self.click(*self.TERMS_AND_CONDITIONS_LINK)
+
+    def verify_invalid_login(self):
+        self.verify_partial_match("We can't find your account.", *self.ALERT_DIV)

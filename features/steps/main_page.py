@@ -21,6 +21,16 @@ def click_cart_icon(context):
     context.app.main_page.click_cart_icon()
 
 
+@when('Hover over signin')
+def hover_signin(context):
+    context.app.main_page.hover_signin()
+
+
+@then('Verify signin arrow shown')
+def verify_signin_arrow(context):
+    context.app.main_page.verify_signin_arrow_visible()
+
+
 @then('Navigate to Cart Page')
 def navigate_cart_page(context):
     context.app.main_page.click_cart_icon()
